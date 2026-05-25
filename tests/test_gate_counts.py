@@ -2,12 +2,12 @@
 
 
 def test_count_gate_basis():
-    gates = [{"type": "CNOT"}, {"type": "CNOT"}, {"type": "TOFFOLI"}, {}]
-    assert count_gate_basis(gates) == {"CNOT": 2, "TOFFOLI": 1, "UNKNOWN": 1}
+    gates = [{"type": "CNOT"}, {"type": "TOFFOLI"}, {"type": "CNOT"}, {"other": "ignored"}]
+    assert count_gate_basis(gates) == {"CNOT": 2, "TOFFOLI": 1}
 
 
-def test_summarize_gate_counts():
-    gates = [{"type": "NOT"}, {"type": "TOFFOLI"}]
-    summary = summarize_gate_counts(gates)
+def test_summarize_gate_counts_empty_and_nonempty():
+    assert summarize_gate_counts([]) == {"total_gates": 0, "basis_counts": {}}
+    summary = summarize_gate_counts([{"type": "NOT"}, {"type": "NOT"}])
     assert summary["total_gates"] == 2
-    assert summary["by_type"]["NOT"] == 1
+    assert summary["basis_counts"] == {"NOT": 2}

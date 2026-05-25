@@ -4,6 +4,14 @@
 layout:
 	find . -maxdepth 3 -type f | sort
 
+generate-examples:
+	python scripts/generate_modinv_certificate.py --bits 8 --modulus 251 --count 32 --out examples/inv_8bit.json
+	python scripts/generate_modinv_certificate.py --bits 16 --modulus 65521 --count 64 --out examples/inv_16bit.json
+
+verify-examples:
+	python -m verifier.certificate examples/inv_8bit.json
+	python -m verifier.certificate examples/inv_16bit.json
+
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +

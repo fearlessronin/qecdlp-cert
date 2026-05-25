@@ -12,6 +12,7 @@
     "resource_counts",
     "io_spec",
     "test_generation",
+    "correctness_transcript",
     "transcript_hash",
     "proof_artifact"
   ],
@@ -23,8 +24,17 @@
       "type": "array",
       "items": {"type": "string"}
     },
-    "arithmetic_function": {"type": "string"},
-    "arithmetic_parameters": {"type": "object"},
+    "arithmetic_function": {"type": "string", "enum": ["modular_inversion"]},
+    "arithmetic_parameters": {
+      "type": "object",
+      "required": ["modulus", "bit_length", "field"],
+      "properties": {
+        "modulus": {"type": "integer", "minimum": 2},
+        "bit_length": {"type": "integer", "minimum": 1},
+        "field": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
     "resource_counts": {
       "type": "object",
       "properties": {
@@ -32,14 +42,62 @@
         "ancilla_qubits": {"type": "integer", "minimum": 0},
         "toffoli_count": {"type": "integer", "minimum": 0},
         "cnot_count": {"type": "integer", "minimum": 0},
-        "depth": {"type": "integer", "minimum": 0}
+        "depth": {"type": "integer", "minimum": 0},
+        "source": {"type": "string"}
       },
       "additionalProperties": true
     },
-    "io_spec": {"type": "object"},
-    "test_generation": {"type": "object"},
+    "io_spec": {
+      "type": "object",
+      "required": ["domain", "input_register", "output_register", "relation"],
+      "properties": {
+        "domain": {"type": "string"},
+        "input_register": {"type": "string"},
+        "output_register": {"type": "string"},
+        "relation": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "test_generation": {
+      "type": "object",
+      "required": ["method", "label", "test_count", "exhaustive"],
+      "properties": {
+        "method": {"type": "string"},
+        "label": {"type": "string"},
+        "test_count": {"type": "integer", "minimum": 0},
+        "exhaustive": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "correctness_transcript": {
+      "type": "object",
+      "required": ["tests"],
+      "properties": {
+        "tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["x", "y", "passed"],
+            "properties": {
+              "x": {"type": "integer"},
+              "y": {"type": "integer"},
+              "passed": {"type": "boolean"}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
     "transcript_hash": {"type": "string"},
-    "proof_artifact": {"type": "object"}
+    "proof_artifact": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
   },
   "additionalProperties": true
 }

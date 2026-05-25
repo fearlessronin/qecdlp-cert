@@ -1,19 +1,204 @@
-﻿{
-  "certificate_version": "0.1.0",
-  "certificate_id": "inv-8bit-placeholder",
-  "circuit_hash": "placeholder",
-  "gate_basis": ["NOT", "CNOT", "TOFFOLI"],
+{
   "arithmetic_function": "modular_inversion",
-  "arithmetic_parameters": {"modulus": 251, "bit_length": 8},
-  "resource_counts": {
-    "logical_qubits": 0,
-    "ancilla_qubits": 0,
-    "toffoli_count": 0,
-    "cnot_count": 0,
-    "depth": 0
+  "arithmetic_parameters": {
+    "bit_length": 8,
+    "field": "prime_field",
+    "modulus": 251
   },
-  "io_spec": {"domain": "F_p^*", "output": "x^{-1} mod p"},
-  "test_generation": {"method": "shake256"},
-  "transcript_hash": "placeholder",
-  "proof_artifact": {"type": "none"}
+  "certificate_id": "inv-8bit-toy-transcript",
+  "certificate_version": "0.1.0",
+  "circuit_hash": "481d2e6e5e059b8269d79e155663ccabbfd7ec933b6751d232e0e56b76420f11",
+  "correctness_transcript": {
+    "tests": [
+      {
+        "passed": true,
+        "x": 150,
+        "y": 82
+      },
+      {
+        "passed": true,
+        "x": 13,
+        "y": 58
+      },
+      {
+        "passed": true,
+        "x": 48,
+        "y": 68
+      },
+      {
+        "passed": true,
+        "x": 154,
+        "y": 207
+      },
+      {
+        "passed": true,
+        "x": 164,
+        "y": 75
+      },
+      {
+        "passed": true,
+        "x": 226,
+        "y": 10
+      },
+      {
+        "passed": true,
+        "x": 86,
+        "y": 108
+      },
+      {
+        "passed": true,
+        "x": 250,
+        "y": 250
+      },
+      {
+        "passed": true,
+        "x": 156,
+        "y": 214
+      },
+      {
+        "passed": true,
+        "x": 104,
+        "y": 70
+      },
+      {
+        "passed": true,
+        "x": 96,
+        "y": 34
+      },
+      {
+        "passed": true,
+        "x": 110,
+        "y": 89
+      },
+      {
+        "passed": true,
+        "x": 88,
+        "y": 174
+      },
+      {
+        "passed": true,
+        "x": 73,
+        "y": 196
+      },
+      {
+        "passed": true,
+        "x": 125,
+        "y": 249
+      },
+      {
+        "passed": true,
+        "x": 172,
+        "y": 54
+      },
+      {
+        "passed": true,
+        "x": 157,
+        "y": 8
+      },
+      {
+        "passed": true,
+        "x": 185,
+        "y": 19
+      },
+      {
+        "passed": true,
+        "x": 223,
+        "y": 242
+      },
+      {
+        "passed": true,
+        "x": 23,
+        "y": 131
+      },
+      {
+        "passed": true,
+        "x": 188,
+        "y": 247
+      },
+      {
+        "passed": true,
+        "x": 15,
+        "y": 67
+      },
+      {
+        "passed": true,
+        "x": 69,
+        "y": 211
+      },
+      {
+        "passed": true,
+        "x": 186,
+        "y": 139
+      },
+      {
+        "passed": true,
+        "x": 115,
+        "y": 227
+      },
+      {
+        "passed": true,
+        "x": 73,
+        "y": 196
+      },
+      {
+        "passed": true,
+        "x": 53,
+        "y": 90
+      },
+      {
+        "passed": true,
+        "x": 175,
+        "y": 142
+      },
+      {
+        "passed": true,
+        "x": 184,
+        "y": 236
+      },
+      {
+        "passed": true,
+        "x": 84,
+        "y": 3
+      },
+      {
+        "passed": true,
+        "x": 29,
+        "y": 26
+      },
+      {
+        "passed": true,
+        "x": 45,
+        "y": 106
+      }
+    ]
+  },
+  "gate_basis": [
+    "NOT",
+    "CNOT",
+    "TOFFOLI"
+  ],
+  "io_spec": {
+    "domain": "F_p^*",
+    "input_register": "x",
+    "output_register": "x^{-1} mod p",
+    "relation": "x * y % p == 1"
+  },
+  "proof_artifact": {
+    "type": "none"
+  },
+  "resource_counts": {
+    "ancilla_qubits": 8,
+    "cnot_count": 0,
+    "depth": 0,
+    "logical_qubits": 16,
+    "source": "toy arithmetic transcript only; no gate-level circuit supplied",
+    "toffoli_count": 0
+  },
+  "test_generation": {
+    "exhaustive": false,
+    "label": "modinv",
+    "method": "shake256",
+    "test_count": 32
+  },
+  "transcript_hash": "0362e3f9aa7ed6350faee28e674151dda195889bb9b4a9320f6e068dc3722702"
 }

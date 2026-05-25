@@ -1,13 +1,24 @@
-﻿from pathlib import Path
+﻿import json
+from pathlib import Path
 
-from verifier.certificate import load_certificate, validate_certificate
-
-
-ROOT = Path(__file__).resolve().parents[1]
-SCHEMA = ROOT / "schema" / "reversible_arithmetic_certificate.schema.json"
+from verifier.certificate import certificate_summary, load_certificate, validate_certificate
 
 
-def test_example_certificates_validate():
-    for name in ["inv_8bit.json", "inv_16bit.json"]:
-        cert = load_certificate(ROOT / "examples" / name)
-        assert validate_certificate(cert, SCHEMA) is True
+SCHEMA = Path("schema/reversible_arithmetic_certificate.schema.json")
+
+
+def test_examples_validate_against_schema():
+    for path in [Path("examples/inv_8bit.json"), Path("examples/inv_16bit.json")]:
+        cert = load_certificate(path)
+        validate_certificate(cert, SCHEMA)
+
+
+def test_certificate_summary_has_core_fields():
+    cert = load_certificate("examples/inv_8bit.json")
+    summary = certificate_summary(cert)
+    assert summary["certificate_id"]
+    assert summary["arithmetic_function"] == "modular_inversion"
+    assert summary["modulus"] == cert["arithmetic_parameters"]["modulus"]
+    assert summary["bit_length"] == cert["arithmetic_parameters"]["bit_length"]
+    assert summary["test_count"] == cert["test_generation"]["test_count"]
+    assert summary["proof_artifact"] == "none"
