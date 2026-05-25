@@ -10,3 +10,4 @@ This report is generated from the public toy certificates in `examples/`. It sum
 | toy_cnot_copy-truth-table-cert | toy_cnot_copy | 2 | 2 | 4 | true | true | true | true | true | none | pass |
 | toy_toffoli_and-truth-table-cert | toy_toffoli_and | 2 | 3 | 8 | true | true | true | true | true | none | pass |
 | toy_swap-truth-table-cert | toy_swap | 2 | 2 | 4 | true | true | true | true | true | none | pass |
+| toy_add_mod_2n_n2-truth-table-cert | toy_add_mod_2n | 4 | 2 | 16 | true | true | true | true | true | none | pass |

@@ -46,3 +46,11 @@ The toy Boolean certificate targets are:
 - `toy_swap`: `(x, y) -> (y, x)`.
 
 These certificates use exhaustive truth-table transcripts over small public reversible circuits. They validate the certificate pipeline and public-circuit binding mechanism; they are not quantum-ECDLP attack circuits.
+
+## Toy Modular Addition Certificate
+
+`toy_add_mod_2n` certifies a small reversible arithmetic demonstration:
+
+`(a, b) -> (a, b + a mod 2^n)`
+
+The current generated example uses `n=2` with little-endian registers. It is a toy arithmetic block over `Z/(2^n)`, not modular addition over an arbitrary prime field and not a modular inversion circuit.

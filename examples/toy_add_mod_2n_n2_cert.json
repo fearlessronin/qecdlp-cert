@@ -1,0 +1,289 @@
+{
+  "arithmetic_function": "toy_add_mod_2n",
+  "arithmetic_parameters": {
+    "bit_length": 2,
+    "field": "Z/(2^n)",
+    "modulus": 4,
+    "n": 2
+  },
+  "certificate_id": "toy_add_mod_2n_n2-truth-table-cert",
+  "certificate_version": "0.1.0",
+  "circuit_hash": "9e28abdd203f53a0ff308da13b4255f241b82cc439754981656cdca204ca8a34",
+  "correctness_transcript": {
+    "tests": [
+      {
+        "input_bits": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "output_bits": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "output_bits": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "output_bits": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "output_bits": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "output_bits": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "output_bits": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "output_bits": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "output_bits": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "output_bits": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "output_bits": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "output_bits": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "output_bits": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "output_bits": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "output_bits": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "output_bits": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "output_bits": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "gate_basis": [
+    "CNOT",
+    "TOFFOLI"
+  ],
+  "io_spec": {
+    "domain": "boolean_bitstrings_clean_work",
+    "input_register": "a,b,work",
+    "output_register": "a,b+a mod 2^n,work",
+    "relation": "toy_add_mod_2n"
+  },
+  "proof_artifact": {
+    "type": "none"
+  },
+  "public_circuit": {
+    "circuit_file": "circuits/toy_add_mod_2n_n2.json",
+    "circuit_hash": "9e28abdd203f53a0ff308da13b4255f241b82cc439754981656cdca204ca8a34",
+    "circuit_id": "toy-add-mod-2n-n2"
+  },
+  "resource_counts": {
+    "ancilla_qubits": 0,
+    "cnot_count": 2,
+    "depth": 3,
+    "logical_qubits": 4,
+    "source": "public toy add-mod-2^n gate-list with exhaustive classical truth-table simulation",
+    "toffoli_count": 1
+  },
+  "test_generation": {
+    "exhaustive": true,
+    "label": "toy_add_mod_2n",
+    "method": "exhaustive_truth_table",
+    "test_count": 16
+  },
+  "transcript_hash": "aa6406a3201470a2c47336451bc6f5f4dad0c8ce96203b7bff9b034ab11f23c5"
+}

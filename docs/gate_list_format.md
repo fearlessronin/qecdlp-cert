@@ -46,6 +46,19 @@ The verifier computes:
 
 The current depth convention is simple serial depth, so `depth = total_gates`.
 
+## Register Metadata
+
+Arithmetic toy circuits may include optional `registers` metadata. For example, the toy add-mod-`2^n` circuit records little-endian `a` and `b` register indices plus optional clean work bits:
+
+```json
+"registers": {
+  "a": [0, 1],
+  "b": [2, 3],
+  "work": [],
+  "endianness": "little"
+}
+```
+
 ## Classical Reversible Simulation
 
 Toy gate lists can be simulated on computational-basis bit inputs. The simulator supports `NOT`, `CNOT`, `TOFFOLI`, and `SWAP`, validates input bitstrings, and can generate a full truth table for small circuits.

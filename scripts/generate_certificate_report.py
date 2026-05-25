@@ -29,6 +29,7 @@ EXAMPLES = [
     (Path("examples/toy_cnot_copy_cert.json"), Path("circuits/toy_cnot_copy.json")),
     (Path("examples/toy_toffoli_and_cert.json"), Path("circuits/toy_toffoli_and.json")),
     (Path("examples/toy_swap_cert.json"), Path("circuits/toy_swap.json")),
+    (Path("examples/toy_add_mod_2n_n2_cert.json"), Path("circuits/toy_add_mod_2n_n2.json")),
 ]
 
 

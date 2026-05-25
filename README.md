@@ -18,6 +18,8 @@ Step 4 is complete: small public reversible Boolean circuits can be generated, s
 
 Step 5 is complete: supported toy reversible Boolean circuits can be bound to certificates with exhaustive truth-table transcripts, public circuit hashes, and resource-count checks.
 
+Step 6 is complete: a toy reversible arithmetic circuit for `(a,b)->(a,b+a mod 2^n)` is generated and certified for `n=2`.
+
 The current public gate-list examples are toy artifacts only. `circuits/toy_modinv_stub_8bit.json` is **not** a real modular-inversion circuit; it exists to test certificate/resource-count plumbing.
 
 ## Project goals
@@ -29,6 +31,7 @@ The current public gate-list examples are toy artifacts only. `circuits/toy_modi
 - Verify public toy gate-list hashes and resource-count metadata.
 - Simulate small public reversible Boolean circuits on classical bit inputs.
 - Bind toy simulated circuits to exhaustive truth-table certificates.
+- Generate and certify a small reversible toy addition circuit modulo `2^n`.
 - Generate reproducible Markdown and CSV reports for prototype outputs.
 
 ## Repository layout
@@ -81,6 +84,8 @@ Generate toy reversible circuits and truth-table certificates:
 ```bash
 python scripts/generate_toy_circuits.py
 python scripts/generate_toy_circuit_certificates.py
+python scripts/generate_add_mod_2n_circuit.py --n 2 --out circuits/toy_add_mod_2n_n2.json
+python scripts/generate_add_mod_2n_certificate.py --circuit circuits/toy_add_mod_2n_n2.json --out examples/toy_add_mod_2n_n2_cert.json
 ```
 
 Verify toy truth-table certificates:
@@ -89,6 +94,7 @@ Verify toy truth-table certificates:
 python -m verifier.certificate examples/toy_cnot_copy_cert.json --circuit circuits/toy_cnot_copy.json
 python -m verifier.certificate examples/toy_toffoli_and_cert.json --circuit circuits/toy_toffoli_and.json
 python -m verifier.certificate examples/toy_swap_cert.json --circuit circuits/toy_swap.json
+python -m verifier.certificate examples/toy_add_mod_2n_n2_cert.json --circuit circuits/toy_add_mod_2n_n2.json
 ```
 
 Generate reports:
@@ -112,6 +118,8 @@ make generate-toy-circuits
 make toy-circuit-report
 make generate-toy-certificates
 make verify-toy-certificates
+make generate-add-mod-2n
+make verify-add-mod-2n
 ```
 
 ## Current examples
@@ -124,6 +132,7 @@ Certificates:
 - `examples/toy_cnot_copy_cert.json` - exhaustive truth-table certificate for CNOT copy/xor.
 - `examples/toy_toffoli_and_cert.json` - exhaustive truth-table certificate for Toffoli AND.
 - `examples/toy_swap_cert.json` - exhaustive truth-table certificate for SWAP.
+- `examples/toy_add_mod_2n_n2_cert.json` - exhaustive truth-table certificate for `(a,b)->(a,b+a mod 4)`.
 
 Toy circuit files:
 
@@ -132,6 +141,7 @@ Toy circuit files:
 - `circuits/toy_cnot_copy.json` - generated CNOT copy/xor toy circuit.
 - `circuits/toy_toffoli_and.json` - generated Toffoli AND toy circuit.
 - `circuits/toy_swap.json` - generated SWAP toy circuit.
+- `circuits/toy_add_mod_2n_n2.json` - generated reversible toy addition circuit for `n=2`.
 
 Reports:
 
@@ -144,10 +154,10 @@ Reports:
 
 This project is limited to public reversible arithmetic-block certification. It does not provide attack circuits, private-key recovery tools, or verification of withheld circuits from prior work.
 
-Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata, classical simulation of small reversible Boolean toy circuits, and exhaustive truth-table certificates for supported toy functions.
+Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata, classical simulation of small reversible Boolean toy circuits, exhaustive truth-table certificates for supported toy functions, and a small reversible toy addition circuit modulo `2^n`.
 
 The simulator does not model quantum superposition, amplitudes, phase, measurement, noise, or fault tolerance. Real reversible modular-inversion circuit generation and full circuit-level arithmetic verification are future work.
 
 ## Next development step
 
-Step 6: implement a toy reversible modular addition circuit and certificate.
+Step 7: update implementation summary docs and prototype artifact descriptions.

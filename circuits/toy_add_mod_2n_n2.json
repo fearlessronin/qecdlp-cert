@@ -1,0 +1,56 @@
+{
+  "arithmetic_function": "toy_add_mod_2n",
+  "circuit_id": "toy-add-mod-2n-n2",
+  "circuit_version": "0.1.0",
+  "description": "Toy reversible circuit for (a,b)->(a,b+a mod 2^n), currently n=2.",
+  "gate_basis": [
+    "CNOT",
+    "TOFFOLI"
+  ],
+  "gates": [
+    {
+      "comment": "Add carry from a0+b0 into b1.",
+      "controls": [
+        0,
+        2
+      ],
+      "targets": [
+        3
+      ],
+      "type": "TOFFOLI"
+    },
+    {
+      "comment": "Add a1 into b1.",
+      "controls": [
+        1
+      ],
+      "targets": [
+        3
+      ],
+      "type": "CNOT"
+    },
+    {
+      "comment": "Add a0 into b0.",
+      "controls": [
+        0
+      ],
+      "targets": [
+        2
+      ],
+      "type": "CNOT"
+    }
+  ],
+  "qubit_count": 4,
+  "registers": {
+    "a": [
+      0,
+      1
+    ],
+    "b": [
+      2,
+      3
+    ],
+    "endianness": "little",
+    "work": []
+  }
+}

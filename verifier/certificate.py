@@ -9,6 +9,7 @@ from pathlib import Path
 
 from jsonschema import ValidationError, validate
 
+from .arithmetic_certificate import verify_add_mod_2n_transcript
 from .gate_counts import load_gate_list, verify_circuit_against_certificate
 from .modular_inversion import verify_modinv_transcript
 from .toy_certificate import verify_toy_transcript
@@ -76,6 +77,14 @@ def verify_certificate(cert: dict, circuit_path: str | Path | None = None) -> tu
         transcript_ok, transcript_messages = verify_modinv_transcript(cert)
         ok = ok and transcript_ok
         messages.extend(transcript_messages)
+    elif arithmetic_function == "toy_add_mod_2n":
+        if circuit is None:
+            ok = False
+            messages.append("toy_add_mod_2n certificates require --circuit")
+        else:
+            transcript_ok, transcript_messages = verify_add_mod_2n_transcript(cert, circuit)
+            ok = ok and transcript_ok
+            messages.extend(transcript_messages)
     elif arithmetic_function in TOY_ARITHMETIC_FUNCTIONS:
         if circuit is None:
             ok = False

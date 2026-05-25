@@ -40,6 +40,13 @@ verify-toy-certificates:
 	python -m verifier.certificate examples/toy_toffoli_and_cert.json --circuit circuits/toy_toffoli_and.json
 	python -m verifier.certificate examples/toy_swap_cert.json --circuit circuits/toy_swap.json
 
+generate-add-mod-2n:
+	python scripts/generate_add_mod_2n_circuit.py --n 2 --out circuits/toy_add_mod_2n_n2.json
+	python scripts/generate_add_mod_2n_certificate.py --circuit circuits/toy_add_mod_2n_n2.json --out examples/toy_add_mod_2n_n2_cert.json
+
+verify-add-mod-2n:
+	python -m verifier.certificate examples/toy_add_mod_2n_n2_cert.json --circuit circuits/toy_add_mod_2n_n2.json
+
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +

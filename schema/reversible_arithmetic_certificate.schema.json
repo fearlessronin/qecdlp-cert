@@ -35,7 +35,7 @@
     },
     "arithmetic_function": {
       "type": "string",
-      "enum": ["modular_inversion", "toy_cnot_copy", "toy_toffoli_and", "toy_swap"]
+      "enum": ["modular_inversion", "toy_cnot_copy", "toy_toffoli_and", "toy_swap", "toy_add_mod_2n"]
     },
     "arithmetic_parameters": {
       "type": "object",
