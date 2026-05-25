@@ -1,4 +1,4 @@
-﻿# qecdlp-cert
+# qecdlp-cert
 
 `qecdlp-cert` is a research prototype for verifiable resource certificates for public reversible arithmetic blocks used in quantum elliptic-curve discrete logarithm problem (ECDLP) resource estimation.
 
