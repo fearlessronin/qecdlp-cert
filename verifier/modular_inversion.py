@@ -69,7 +69,8 @@ def verify_modinv_transcript(cert: dict) -> tuple[bool, list[str]]:
         if sorted(observed_inputs) != expected_inputs or len(observed_inputs) != len(expected_inputs):
             messages.append("exhaustive transcript must contain exactly all inputs in 1..p-1")
     else:
-        expected_inputs = derive_test_inputs(cert.get("circuit_hash", ""), p, test_count, label)
+        seed_hash = test_generation.get("seed_circuit_hash", cert.get("circuit_hash", ""))
+        expected_inputs = derive_test_inputs(seed_hash, p, test_count, label)
         if observed_inputs != expected_inputs:
             messages.append("transcript x values do not match deterministic test generation")
         if len(tests) != test_count:

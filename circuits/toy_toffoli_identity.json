@@ -1,0 +1,21 @@
+﻿{
+  "circuit_id": "toy-toffoli-identity",
+  "circuit_version": "0.1.0",
+  "description": "Tiny public reversible toy circuit. Two identical Toffoli gates cancel, so the circuit is logically identity on three bits.",
+  "gate_basis": ["NOT", "CNOT", "TOFFOLI"],
+  "qubit_count": 3,
+  "gates": [
+    {
+      "type": "TOFFOLI",
+      "controls": [0, 1],
+      "targets": [2],
+      "comment": "First Toffoli."
+    },
+    {
+      "type": "TOFFOLI",
+      "controls": [0, 1],
+      "targets": [2],
+      "comment": "Second Toffoli cancels the first."
+    }
+  ]
+}

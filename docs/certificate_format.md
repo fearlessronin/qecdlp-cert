@@ -6,7 +6,7 @@ The v0.1 format requires the following top-level fields:
 
 - `certificate_version`: schema/prototype version string.
 - `certificate_id`: human-readable identifier.
-- `circuit_hash`: binding commitment for deterministic tests.
+- `circuit_hash`: binding commitment for deterministic tests or a public circuit hash when a gate-list file is attached.
 - `gate_basis`: declared reversible gate basis.
 - `arithmetic_function`: currently `modular_inversion`.
 - `arithmetic_parameters`: modulus, bit length, and field descriptor.
@@ -18,6 +18,18 @@ The v0.1 format requires the following top-level fields:
 - `proof_artifact`: optional proof metadata.
 
 For v0.1, `proof_artifact` may be `{ "type": "none" }`. This means the verifier checks the public transcript and metadata only; it does not claim a formal proof of a gate-level circuit.
+
+## Public Circuit Metadata
+
+A certificate may optionally include `public_circuit`:
+
+- `circuit_file`: path to a public gate-list JSON file.
+- `circuit_id`: expected circuit identifier.
+- `circuit_hash`: SHA-256 hash of the canonical JSON gate list.
+
+When a public circuit is supplied to the verifier with `--circuit`, the verifier recomputes the circuit hash, validates gate indices, summarizes gate counts, and compares selected resource-count fields against the certificate.
+
+The transcript test seed may be stored as `test_generation.seed_circuit_hash` when a certificate is attached to a later public gate-list hash while preserving an already generated arithmetic transcript.
 
 The first target is modular inversion over prime fields, with relation:
 

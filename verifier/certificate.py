@@ -9,6 +9,7 @@ from pathlib import Path
 
 from jsonschema import ValidationError, validate
 
+from .gate_counts import load_gate_list, verify_circuit_against_certificate
 from .modular_inversion import verify_modinv_transcript
 
 DEFAULT_SCHEMA = Path("schema/reversible_arithmetic_certificate.schema.json")
@@ -43,6 +44,7 @@ def certificate_summary(cert: dict) -> dict:
     params = cert.get("arithmetic_parameters", {})
     tests = cert.get("test_generation", {})
     proof = cert.get("proof_artifact", {})
+    public_circuit = cert.get("public_circuit", {})
     return {
         "certificate_id": cert.get("certificate_id"),
         "arithmetic_function": cert.get("arithmetic_function"),
@@ -51,7 +53,30 @@ def certificate_summary(cert: dict) -> dict:
         "test_count": tests.get("test_count"),
         "exhaustive": tests.get("exhaustive"),
         "proof_artifact": proof.get("type"),
+        "public_circuit": public_circuit.get("circuit_id"),
     }
+
+
+def verify_certificate(cert: dict, circuit_path: str | Path | None = None) -> tuple[bool, list[str]]:
+    """Run semantic certificate checks beyond JSON-schema validation."""
+    ok = True
+    messages: list[str] = []
+
+    if cert.get("arithmetic_function") == "modular_inversion":
+        transcript_ok, transcript_messages = verify_modinv_transcript(cert)
+        ok = ok and transcript_ok
+        messages.extend(transcript_messages)
+    else:
+        ok = False
+        messages.append(f"unsupported arithmetic_function: {cert.get('arithmetic_function')}")
+
+    if circuit_path is not None:
+        circuit = load_gate_list(circuit_path)
+        circuit_ok, circuit_messages = verify_circuit_against_certificate(cert, circuit)
+        ok = ok and circuit_ok
+        messages.extend(circuit_messages)
+
+    return ok, messages
 
 
 def _print_summary(summary: dict, messages: list[str]) -> None:
@@ -67,15 +92,13 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Validate and verify a reversible arithmetic certificate.")
     parser.add_argument("certificate", help="Path to certificate JSON")
     parser.add_argument("--schema", default=str(DEFAULT_SCHEMA), help="Path to certificate JSON schema")
+    parser.add_argument("--circuit", help="Optional public gate-list circuit JSON to verify against resource counts")
     args = parser.parse_args(argv)
 
     try:
         cert = load_certificate(args.certificate)
         validate_certificate(cert, args.schema)
-        if cert.get("arithmetic_function") == "modular_inversion":
-            ok, messages = verify_modinv_transcript(cert)
-        else:
-            ok, messages = False, [f"unsupported arithmetic_function: {cert.get('arithmetic_function')}"]
+        ok, messages = verify_certificate(cert, args.circuit)
         _print_summary(certificate_summary(cert), messages)
         return 0 if ok else 1
     except Exception as exc:  # noqa: BLE001 - CLI should print a concise failure.

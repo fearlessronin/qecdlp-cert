@@ -1,0 +1,37 @@
+﻿{
+  "circuit_id": "toy-modinv-stub-8bit",
+  "circuit_version": "0.1.0",
+  "description": "Toy public gate-list stub for modular inversion certificate plumbing only. This is not a real modular inversion circuit and is not a quantum attack circuit.",
+  "gate_basis": ["NOT", "CNOT", "TOFFOLI"],
+  "qubit_count": 24,
+  "gates": [
+    {
+      "type": "NOT",
+      "targets": [0],
+      "comment": "Toy placeholder gate."
+    },
+    {
+      "type": "CNOT",
+      "controls": [0],
+      "targets": [1],
+      "comment": "Toy placeholder gate."
+    },
+    {
+      "type": "TOFFOLI",
+      "controls": [0, 1],
+      "targets": [2],
+      "comment": "Toy placeholder gate."
+    },
+    {
+      "type": "SWAP",
+      "targets": [2, 3],
+      "comment": "Toy placeholder gate."
+    },
+    {
+      "type": "TOFFOLI",
+      "controls": [3, 4],
+      "targets": [5],
+      "comment": "Toy placeholder gate."
+    }
+  ]
+}

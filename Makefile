@@ -12,6 +12,12 @@ verify-examples:
 	python -m verifier.certificate examples/inv_8bit.json
 	python -m verifier.certificate examples/inv_16bit.json
 
+attach-circuit-example:
+	python scripts/attach_circuit_to_certificate.py --cert examples/inv_8bit.json --circuit circuits/toy_modinv_stub_8bit.json --out examples/inv_8bit_with_circuit.json
+
+verify-circuit-example:
+	python -m verifier.certificate examples/inv_8bit_with_circuit.json --circuit circuits/toy_modinv_stub_8bit.json
+
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +
