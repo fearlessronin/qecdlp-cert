@@ -22,6 +22,26 @@ Step 6 is complete: a toy reversible arithmetic circuit for `(a,b)->(a,b+a mod 2
 
 The current public gate-list examples are toy artifacts only. `circuits/toy_modinv_stub_8bit.json` is **not** a real modular-inversion circuit; it exists to test certificate/resource-count plumbing.
 
+
+## Verification snapshot
+
+The current checked-in examples and reports cover seven certificates:
+
+- 2 modular-inversion transcript-only certificates.
+- 1 modular-inversion transcript with an attached public toy gate-list stub.
+- 3 exhaustive toy Boolean truth-table certificates.
+- 1 exhaustive toy arithmetic certificate for addition modulo `2^2`.
+
+The current test suite has 42 tests covering schema validation, transcript hashing, deterministic test generation, modular inversion checks, public circuit hash/resource checks, classical reversible simulation, toy truth-table certificates, and toy addition modulo `2^n`.
+
+## Supported certificate functions
+
+- `modular_inversion`
+- `toy_cnot_copy`
+- `toy_toffoli_and`
+- `toy_swap`
+- `toy_add_mod_2n`
+
 ## Project goals
 
 - Define a reusable resource-certificate format for public reversible arithmetic blocks.
