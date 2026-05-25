@@ -30,7 +30,6 @@ The current public gate-list examples are toy artifacts only. `circuits/toy_modi
 - Simulate small public reversible Boolean circuits on classical bit inputs.
 - Bind toy simulated circuits to exhaustive truth-table certificates.
 - Generate reproducible Markdown and CSV reports for prototype outputs.
-- Support an IACR Cryptology ePrint paper on verifiable quantum-ECDLP arithmetic claims.
 
 ## Repository layout
 
@@ -42,7 +41,6 @@ The current public gate-list examples are toy artifacts only. `circuits/toy_modi
 - `scripts/` - certificate generation, circuit-attachment, toy-circuit generation, and report helpers.
 - `tests/` - pytest tests.
 - `docs/` - project documentation and design notes.
-- `paper/` - LaTeX source for the ePrint paper scaffold.
 
 ## Quick start
 
@@ -149,12 +147,6 @@ This project is limited to public reversible arithmetic-block certification. It 
 Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata, classical simulation of small reversible Boolean toy circuits, and exhaustive truth-table certificates for supported toy functions.
 
 The simulator does not model quantum superposition, amplitudes, phase, measurement, noise, or fault tolerance. Real reversible modular-inversion circuit generation and full circuit-level arithmetic verification are future work.
-
-## Planned paper
-
-Working title:
-
-**Verifiable Resource Certificates for Public Reversible Arithmetic Blocks in Quantum ECDLP**
 
 ## Next development step
 
