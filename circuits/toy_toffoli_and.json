@@ -1,0 +1,21 @@
+{
+  "circuit_id": "toy-toffoli-and",
+  "circuit_version": "0.1.0",
+  "description": "Toy reversible Toffoli AND circuit: (x, y, z) -> (x, y, z xor (x and y)).",
+  "gate_basis": [
+    "TOFFOLI"
+  ],
+  "gates": [
+    {
+      "controls": [
+        0,
+        1
+      ],
+      "targets": [
+        2
+      ],
+      "type": "TOFFOLI"
+    }
+  ],
+  "qubit_count": 3
+}

@@ -26,6 +26,12 @@ verify-all:
 report:
 	python scripts/generate_certificate_report.py
 
+generate-toy-circuits:
+	python scripts/generate_toy_circuits.py
+
+toy-circuit-report:
+	python scripts/generate_toy_circuit_report.py
+
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +

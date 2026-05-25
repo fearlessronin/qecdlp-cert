@@ -46,6 +46,12 @@ The verifier computes:
 
 The current depth convention is simple serial depth, so `depth = total_gates`.
 
+## Classical Reversible Simulation
+
+Toy gate lists can be simulated on computational-basis bit inputs. The simulator supports `NOT`, `CNOT`, `TOFFOLI`, and `SWAP`, validates input bitstrings, and can generate a full truth table for small circuits.
+
+This simulator does not model quantum superposition, amplitudes, phase, measurement, noise, or fault tolerance. It is only a classical reversible Boolean simulator for small public test circuits. That is enough to check basic reversible behavior for toy examples before connecting generated circuits to certificate metadata.
+
 ## Scope
 
 The toy circuits are public plumbing examples. `toy_modinv_stub_8bit.json` is not a real modular inversion circuit. It exists only to test circuit hashing, gate-index validation, and resource-count comparison.

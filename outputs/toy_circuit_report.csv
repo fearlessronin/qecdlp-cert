@@ -1,0 +1,4 @@
+circuit_id,qubit_count,total_inputs,total_gates,not_count,cnot_count,toffoli_count,swap_count,depth,circuit_hash
+toy-cnot-copy,2,4,1,0,1,0,0,1,7637440608a196c1aff574afa58574c76da3d19df12a64d0dd5c9c75d41f536b
+toy-toffoli-and,3,8,1,0,0,1,0,1,1df9a26412d05514feb7f7eb5ca004836295459d505cbce557ed91c56d169d1a
+toy-swap,2,4,1,0,0,0,1,1,6b4b0460b301b86f75a0c8473463bc76f708e0595fbbf7d339daa154f686c150

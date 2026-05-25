@@ -1,0 +1,18 @@
+{
+  "circuit_id": "toy-swap",
+  "circuit_version": "0.1.0",
+  "description": "Toy reversible SWAP circuit: (x, y) -> (y, x).",
+  "gate_basis": [
+    "SWAP"
+  ],
+  "gates": [
+    {
+      "targets": [
+        0,
+        1
+      ],
+      "type": "SWAP"
+    }
+  ],
+  "qubit_count": 2
+}
