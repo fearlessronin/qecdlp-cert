@@ -33,7 +33,10 @@
       "type": "array",
       "items": {"type": "string"}
     },
-    "arithmetic_function": {"type": "string", "enum": ["modular_inversion"]},
+    "arithmetic_function": {
+      "type": "string",
+      "enum": ["modular_inversion", "toy_cnot_copy", "toy_toffoli_and", "toy_swap"]
+    },
     "arithmetic_parameters": {
       "type": "object",
       "required": ["modulus", "bit_length", "field"],
@@ -87,12 +90,24 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["x", "y", "passed"],
+            "required": ["passed"],
             "properties": {
               "x": {"type": "integer"},
               "y": {"type": "integer"},
+              "input_bits": {
+                "type": "array",
+                "items": {"type": "integer", "enum": [0, 1]}
+              },
+              "output_bits": {
+                "type": "array",
+                "items": {"type": "integer", "enum": [0, 1]}
+              },
               "passed": {"type": "boolean"}
             },
+            "anyOf": [
+              {"required": ["x", "y", "passed"]},
+              {"required": ["input_bits", "output_bits", "passed"]}
+            ],
             "additionalProperties": true
           }
         }

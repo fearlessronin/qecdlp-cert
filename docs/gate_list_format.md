@@ -50,6 +50,8 @@ The current depth convention is simple serial depth, so `depth = total_gates`.
 
 Toy gate lists can be simulated on computational-basis bit inputs. The simulator supports `NOT`, `CNOT`, `TOFFOLI`, and `SWAP`, validates input bitstrings, and can generate a full truth table for small circuits.
 
+Toy gate-list circuits can now be bound to certificates with exhaustive truth-table transcripts. The verifier checks the public circuit hash, resource counts, transcript hash, and simulated input-output behavior for supported toy functions.
+
 This simulator does not model quantum superposition, amplitudes, phase, measurement, noise, or fault tolerance. It is only a classical reversible Boolean simulator for small public test circuits. That is enough to check basic reversible behavior for toy examples before connecting generated circuits to certificate metadata.
 
 ## Scope

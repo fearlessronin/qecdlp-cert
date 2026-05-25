@@ -11,6 +11,8 @@ from jsonschema import ValidationError, validate
 
 from .gate_counts import load_gate_list, verify_circuit_against_certificate
 from .modular_inversion import verify_modinv_transcript
+from .toy_certificate import verify_toy_transcript
+from .toy_functions import TOY_ARITHMETIC_FUNCTIONS
 
 DEFAULT_SCHEMA = Path("schema/reversible_arithmetic_certificate.schema.json")
 
@@ -61,20 +63,30 @@ def verify_certificate(cert: dict, circuit_path: str | Path | None = None) -> tu
     """Run semantic certificate checks beyond JSON-schema validation."""
     ok = True
     messages: list[str] = []
-
-    if cert.get("arithmetic_function") == "modular_inversion":
-        transcript_ok, transcript_messages = verify_modinv_transcript(cert)
-        ok = ok and transcript_ok
-        messages.extend(transcript_messages)
-    else:
-        ok = False
-        messages.append(f"unsupported arithmetic_function: {cert.get('arithmetic_function')}")
+    arithmetic_function = cert.get("arithmetic_function")
+    circuit = None
 
     if circuit_path is not None:
         circuit = load_gate_list(circuit_path)
         circuit_ok, circuit_messages = verify_circuit_against_certificate(cert, circuit)
         ok = ok and circuit_ok
         messages.extend(circuit_messages)
+
+    if arithmetic_function == "modular_inversion":
+        transcript_ok, transcript_messages = verify_modinv_transcript(cert)
+        ok = ok and transcript_ok
+        messages.extend(transcript_messages)
+    elif arithmetic_function in TOY_ARITHMETIC_FUNCTIONS:
+        if circuit is None:
+            ok = False
+            messages.append("toy arithmetic certificates require --circuit")
+        else:
+            transcript_ok, transcript_messages = verify_toy_transcript(cert, circuit)
+            ok = ok and transcript_ok
+            messages.extend(transcript_messages)
+    else:
+        ok = False
+        messages.append(f"unsupported arithmetic_function: {arithmetic_function}")
 
     return ok, messages
 

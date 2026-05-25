@@ -16,6 +16,8 @@ Step 3 is complete: reproducible certificate reports are generated in Markdown a
 
 Step 4 is complete: small public reversible Boolean circuits can be generated, simulated on classical computational-basis inputs, and summarized in a toy circuit report.
 
+Step 5 is complete: supported toy reversible Boolean circuits can be bound to certificates with exhaustive truth-table transcripts, public circuit hashes, and resource-count checks.
+
 The current public gate-list examples are toy artifacts only. `circuits/toy_modinv_stub_8bit.json` is **not** a real modular-inversion circuit; it exists to test certificate/resource-count plumbing.
 
 ## Project goals
@@ -26,14 +28,15 @@ The current public gate-list examples are toy artifacts only. `circuits/toy_modi
 - Verify correctness transcripts and transcript hashes.
 - Verify public toy gate-list hashes and resource-count metadata.
 - Simulate small public reversible Boolean circuits on classical bit inputs.
+- Bind toy simulated circuits to exhaustive truth-table certificates.
 - Generate reproducible Markdown and CSV reports for prototype outputs.
 - Support an IACR Cryptology ePrint paper on verifiable quantum-ECDLP arithmetic claims.
 
 ## Repository layout
 
 - `schema/` - JSON schema for reversible arithmetic certificates.
-- `verifier/` - Python package for certificate parsing, deterministic test generation, modular inversion checks, gate-count checks, toy circuit simulation, and reports.
-- `examples/` - example certificate files, including transcript-only and circuit-attached examples.
+- `verifier/` - Python package for certificate parsing, deterministic test generation, modular inversion checks, gate-count checks, toy circuit simulation, toy transcript verification, and reports.
+- `examples/` - example certificate files, including transcript-only, circuit-attached, and toy truth-table certificates.
 - `circuits/` - public toy gate-list examples.
 - `outputs/` - generated Markdown and CSV reports.
 - `scripts/` - certificate generation, circuit-attachment, toy-circuit generation, and report helpers.
@@ -75,16 +78,25 @@ Verify transcript, circuit hash, gate indices, and resource counts:
 python -m verifier.certificate examples/inv_8bit_with_circuit.json --circuit circuits/toy_modinv_stub_8bit.json
 ```
 
-Generate certificate reports:
-
-```bash
-python scripts/generate_certificate_report.py
-```
-
-Generate toy reversible circuits and their simulation report:
+Generate toy reversible circuits and truth-table certificates:
 
 ```bash
 python scripts/generate_toy_circuits.py
+python scripts/generate_toy_circuit_certificates.py
+```
+
+Verify toy truth-table certificates:
+
+```bash
+python -m verifier.certificate examples/toy_cnot_copy_cert.json --circuit circuits/toy_cnot_copy.json
+python -m verifier.certificate examples/toy_toffoli_and_cert.json --circuit circuits/toy_toffoli_and.json
+python -m verifier.certificate examples/toy_swap_cert.json --circuit circuits/toy_swap.json
+```
+
+Generate reports:
+
+```bash
+python scripts/generate_certificate_report.py
 python scripts/generate_toy_circuit_report.py
 ```
 
@@ -100,6 +112,8 @@ make verify-all
 make report
 make generate-toy-circuits
 make toy-circuit-report
+make generate-toy-certificates
+make verify-toy-certificates
 ```
 
 ## Current examples
@@ -109,6 +123,9 @@ Certificates:
 - `examples/inv_8bit.json` - modular inversion over modulus `251`, transcript-only.
 - `examples/inv_16bit.json` - modular inversion over modulus `65521`, transcript-only.
 - `examples/inv_8bit_with_circuit.json` - 8-bit transcript with attached public toy gate-list metadata.
+- `examples/toy_cnot_copy_cert.json` - exhaustive truth-table certificate for CNOT copy/xor.
+- `examples/toy_toffoli_and_cert.json` - exhaustive truth-table certificate for Toffoli AND.
+- `examples/toy_swap_cert.json` - exhaustive truth-table certificate for SWAP.
 
 Toy circuit files:
 
@@ -129,7 +146,7 @@ Reports:
 
 This project is limited to public reversible arithmetic-block certification. It does not provide attack circuits, private-key recovery tools, or verification of withheld circuits from prior work.
 
-Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata, and classical simulation of small reversible Boolean toy circuits.
+Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata, classical simulation of small reversible Boolean toy circuits, and exhaustive truth-table certificates for supported toy functions.
 
 The simulator does not model quantum superposition, amplitudes, phase, measurement, noise, or fault tolerance. Real reversible modular-inversion circuit generation and full circuit-level arithmetic verification are future work.
 
@@ -141,4 +158,4 @@ Working title:
 
 ## Next development step
 
-Step 5: connect toy simulated circuits to certificate examples, so a certificate can bind not only to a public gate-list hash and resource counts, but also to an explicitly simulated toy input-output relation.
+Step 6: implement a toy reversible modular addition circuit and certificate.

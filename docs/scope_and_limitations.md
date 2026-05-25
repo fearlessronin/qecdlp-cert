@@ -8,4 +8,6 @@ Step 1 certificates verify arithmetic transcripts and metadata only. The current
 
 Step 2 adds public toy gate-list resource-count verification. The file `circuits/toy_modinv_stub_8bit.json` is not a real modular inversion circuit. It verifies resource-count plumbing, circuit hashing, and gate-index checks only. Real Luo-style inversion blocks are future work.
 
+Step 5 toy circuit certificates demonstrate the pipeline for public reversible Boolean functions with exhaustive truth-table transcripts. They do not represent quantum-ECDLP attack circuits, cryptanalytic workflows, or production modular inversion circuits.
+
 Randomized deterministic testing is probabilistic unless the test domain is exhausted or the circuit is formally verified. Future versions may add gate-list examples, formal proof artifacts, zero-knowledge proof prototypes, or full circuit resource recomputation.

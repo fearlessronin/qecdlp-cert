@@ -1,0 +1,151 @@
+{
+  "arithmetic_function": "toy_toffoli_and",
+  "arithmetic_parameters": {
+    "bit_length": 3,
+    "field": "boolean_bits",
+    "modulus": 2
+  },
+  "certificate_id": "toy_toffoli_and-truth-table-cert",
+  "certificate_version": "0.1.0",
+  "circuit_hash": "1df9a26412d05514feb7f7eb5ca004836295459d505cbce557ed91c56d169d1a",
+  "correctness_transcript": {
+    "tests": [
+      {
+        "input_bits": [
+          0,
+          0,
+          0
+        ],
+        "output_bits": [
+          0,
+          0,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          0,
+          1
+        ],
+        "output_bits": [
+          0,
+          0,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          1,
+          0
+        ],
+        "output_bits": [
+          0,
+          1,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          1,
+          1
+        ],
+        "output_bits": [
+          0,
+          1,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          0,
+          0
+        ],
+        "output_bits": [
+          1,
+          0,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          0,
+          1
+        ],
+        "output_bits": [
+          1,
+          0,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          1,
+          0
+        ],
+        "output_bits": [
+          1,
+          1,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          1,
+          1
+        ],
+        "output_bits": [
+          1,
+          1,
+          0
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "gate_basis": [
+    "TOFFOLI"
+  ],
+  "io_spec": {
+    "domain": "boolean_bitstrings",
+    "input_register": "input_bits",
+    "output_register": "output_bits",
+    "relation": "toy_toffoli_and"
+  },
+  "proof_artifact": {
+    "type": "none"
+  },
+  "public_circuit": {
+    "circuit_file": "circuits/toy_toffoli_and.json",
+    "circuit_hash": "1df9a26412d05514feb7f7eb5ca004836295459d505cbce557ed91c56d169d1a",
+    "circuit_id": "toy-toffoli-and"
+  },
+  "resource_counts": {
+    "ancilla_qubits": 0,
+    "cnot_count": 0,
+    "depth": 1,
+    "logical_qubits": 3,
+    "source": "public toy gate-list circuit with exhaustive classical truth-table simulation",
+    "toffoli_count": 1
+  },
+  "test_generation": {
+    "exhaustive": true,
+    "label": "toy_toffoli_and",
+    "method": "exhaustive_truth_table",
+    "test_count": 8
+  },
+  "transcript_hash": "5a66496393a2afef5420adb3ffeed957bdc6eb5a0c3dd6b69c319a43e7792c59"
+}

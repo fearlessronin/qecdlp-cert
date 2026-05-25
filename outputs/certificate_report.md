@@ -1,9 +1,12 @@
 # Certificate Verification Report
 
-This report is generated from the public toy certificates in `examples/`. It summarizes schema validation, modular-inversion transcript checks, transcript hashes, and optional public toy gate-list verification.
+This report is generated from the public toy certificates in `examples/`. It summarizes schema validation, transcript checks, transcript hashes, and optional public toy gate-list verification.
 
 | certificate_id | arithmetic_function | modulus | bit_length | test_count | exhaustive | transcript_hash_verified | public_circuit_attached | circuit_hash_verified | resource_counts_verified | proof_artifact_type | status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | inv-8bit-toy-transcript | modular_inversion | 251 | 8 | 32 | false | true | false | not_applicable | not_applicable | none | pass |
 | inv-16bit-toy-transcript | modular_inversion | 65521 | 16 | 64 | false | true | false | not_applicable | not_applicable | none | pass |
 | inv-8bit-toy-transcript | modular_inversion | 251 | 8 | 32 | false | true | true | true | true | none | pass |
+| toy_cnot_copy-truth-table-cert | toy_cnot_copy | 2 | 2 | 4 | true | true | true | true | true | none | pass |
+| toy_toffoli_and-truth-table-cert | toy_toffoli_and | 2 | 3 | 8 | true | true | true | true | true | none | pass |
+| toy_swap-truth-table-cert | toy_swap | 2 | 2 | 4 | true | true | true | true | true | none | pass |

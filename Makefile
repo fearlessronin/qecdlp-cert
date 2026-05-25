@@ -32,6 +32,14 @@ generate-toy-circuits:
 toy-circuit-report:
 	python scripts/generate_toy_circuit_report.py
 
+generate-toy-certificates:
+	python scripts/generate_toy_circuit_certificates.py
+
+verify-toy-certificates:
+	python -m verifier.certificate examples/toy_cnot_copy_cert.json --circuit circuits/toy_cnot_copy.json
+	python -m verifier.certificate examples/toy_toffoli_and_cert.json --circuit circuits/toy_toffoli_and.json
+	python -m verifier.certificate examples/toy_swap_cert.json --circuit circuits/toy_swap.json
+
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +

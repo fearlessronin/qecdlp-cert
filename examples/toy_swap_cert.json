@@ -1,0 +1,91 @@
+{
+  "arithmetic_function": "toy_swap",
+  "arithmetic_parameters": {
+    "bit_length": 2,
+    "field": "boolean_bits",
+    "modulus": 2
+  },
+  "certificate_id": "toy_swap-truth-table-cert",
+  "certificate_version": "0.1.0",
+  "circuit_hash": "6b4b0460b301b86f75a0c8473463bc76f708e0595fbbf7d339daa154f686c150",
+  "correctness_transcript": {
+    "tests": [
+      {
+        "input_bits": [
+          0,
+          0
+        ],
+        "output_bits": [
+          0,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          0,
+          1
+        ],
+        "output_bits": [
+          1,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          0
+        ],
+        "output_bits": [
+          0,
+          1
+        ],
+        "passed": true
+      },
+      {
+        "input_bits": [
+          1,
+          1
+        ],
+        "output_bits": [
+          1,
+          1
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "gate_basis": [
+    "SWAP"
+  ],
+  "io_spec": {
+    "domain": "boolean_bitstrings",
+    "input_register": "input_bits",
+    "output_register": "output_bits",
+    "relation": "toy_swap"
+  },
+  "proof_artifact": {
+    "type": "none"
+  },
+  "public_circuit": {
+    "circuit_file": "circuits/toy_swap.json",
+    "circuit_hash": "6b4b0460b301b86f75a0c8473463bc76f708e0595fbbf7d339daa154f686c150",
+    "circuit_id": "toy-swap"
+  },
+  "resource_counts": {
+    "ancilla_qubits": 0,
+    "cnot_count": 0,
+    "depth": 1,
+    "logical_qubits": 2,
+    "source": "public toy gate-list circuit with exhaustive classical truth-table simulation",
+    "toffoli_count": 0
+  },
+  "test_generation": {
+    "exhaustive": true,
+    "label": "toy_swap",
+    "method": "exhaustive_truth_table",
+    "test_count": 4
+  },
+  "transcript_hash": "808d197c75977e19376c5f8d72f808dfeb78ae39397caf0b13775f38f617ec34"
+}

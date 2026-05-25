@@ -8,12 +8,12 @@ The v0.1 format requires the following top-level fields:
 - `certificate_id`: human-readable identifier.
 - `circuit_hash`: binding commitment for deterministic tests or a public circuit hash when a gate-list file is attached.
 - `gate_basis`: declared reversible gate basis.
-- `arithmetic_function`: currently `modular_inversion`.
+- `arithmetic_function`: supported values are `modular_inversion`, `toy_cnot_copy`, `toy_toffoli_and`, and `toy_swap`.
 - `arithmetic_parameters`: modulus, bit length, and field descriptor.
 - `resource_counts`: public metadata such as qubit counts, Toffoli count, CNOT count, depth, and source.
 - `io_spec`: domain, input register, output register, and arithmetic relation.
 - `test_generation`: deterministic test rule metadata.
-- `correctness_transcript`: test rows containing `x`, `y`, and `passed`.
+- `correctness_transcript`: test rows containing either modular-inversion fields `x`, `y`, `passed`, or toy Boolean fields `input_bits`, `output_bits`, `passed`.
 - `transcript_hash`: SHA-256 hash of the canonical JSON transcript rows.
 - `proof_artifact`: optional proof metadata.
 
@@ -31,6 +31,18 @@ When a public circuit is supplied to the verifier with `--circuit`, the verifier
 
 The transcript test seed may be stored as `test_generation.seed_circuit_hash` when a certificate is attached to a later public gate-list hash while preserving an already generated arithmetic transcript.
 
-The first target is modular inversion over prime fields, with relation:
+## Modular Inversion Certificates
+
+The modular-inversion target is over prime fields, with relation:
 
 `x * y % p == 1`.
+
+## Toy Boolean Circuit Certificates
+
+The toy Boolean certificate targets are:
+
+- `toy_cnot_copy`: `(x, y) -> (x, y xor x)`.
+- `toy_toffoli_and`: `(x, y, z) -> (x, y, z xor (x and y))`.
+- `toy_swap`: `(x, y) -> (y, x)`.
+
+These certificates use exhaustive truth-table transcripts over small public reversible circuits. They validate the certificate pipeline and public-circuit binding mechanism; they are not quantum-ECDLP attack circuits.
