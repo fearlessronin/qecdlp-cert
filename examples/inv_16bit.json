@@ -1,0 +1,19 @@
+﻿{
+  "certificate_version": "0.1.0",
+  "certificate_id": "inv-16bit-placeholder",
+  "circuit_hash": "placeholder",
+  "gate_basis": ["NOT", "CNOT", "TOFFOLI"],
+  "arithmetic_function": "modular_inversion",
+  "arithmetic_parameters": {"modulus": 65521, "bit_length": 16},
+  "resource_counts": {
+    "logical_qubits": 0,
+    "ancilla_qubits": 0,
+    "toffoli_count": 0,
+    "cnot_count": 0,
+    "depth": 0
+  },
+  "io_spec": {"domain": "F_p^*", "output": "x^{-1} mod p"},
+  "test_generation": {"method": "shake256"},
+  "transcript_hash": "placeholder",
+  "proof_artifact": {"type": "none"}
+}

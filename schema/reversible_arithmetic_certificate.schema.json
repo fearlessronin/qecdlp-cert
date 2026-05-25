@@ -1,0 +1,45 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reversible Arithmetic Resource Certificate",
+  "type": "object",
+  "required": [
+    "certificate_version",
+    "certificate_id",
+    "circuit_hash",
+    "gate_basis",
+    "arithmetic_function",
+    "arithmetic_parameters",
+    "resource_counts",
+    "io_spec",
+    "test_generation",
+    "transcript_hash",
+    "proof_artifact"
+  ],
+  "properties": {
+    "certificate_version": {"type": "string"},
+    "certificate_id": {"type": "string"},
+    "circuit_hash": {"type": "string"},
+    "gate_basis": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "arithmetic_function": {"type": "string"},
+    "arithmetic_parameters": {"type": "object"},
+    "resource_counts": {
+      "type": "object",
+      "properties": {
+        "logical_qubits": {"type": "integer", "minimum": 0},
+        "ancilla_qubits": {"type": "integer", "minimum": 0},
+        "toffoli_count": {"type": "integer", "minimum": 0},
+        "cnot_count": {"type": "integer", "minimum": 0},
+        "depth": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "io_spec": {"type": "object"},
+    "test_generation": {"type": "object"},
+    "transcript_hash": {"type": "string"},
+    "proof_artifact": {"type": "object"}
+  },
+  "additionalProperties": true
+}

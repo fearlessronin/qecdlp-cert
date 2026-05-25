@@ -1,0 +1,51 @@
+﻿\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\title{Verifiable Resource Certificates for Public Reversible Arithmetic Blocks in Quantum ECDLP}
+\author{A. Rahman}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Quantum resource estimates for the elliptic-curve discrete logarithm problem
+(ECDLP) now shape cryptographic migration planning, blockchain security analysis,
+and fault-tolerant architecture design. Recent work has moved in two complementary
+directions: Babbush et al. give improved secp256k1 resource estimates supported by
+zero-knowledge attestation while withholding sensitive circuit details, whereas Luo
+et al. publish an explicit reversible modular-inversion construction based on the
+extended Euclidean algorithm, reducing the logical-qubit footprint of prime-field
+ECDLP and identifying gate count, depth, and architecture-aware implementation as
+natural optimization targets. This note proposes a third disclosure model:
+verifiable resource certificates for public reversible arithmetic blocks. A
+certificate records a circuit commitment, gate basis, resource counts, input-output
+specification, deterministic test generation, correctness transcript, and optional
+proof artifact. We specialize the framework to modular inversion blocks
+\(|x\rangle|0\rangle\mapsto |x\rangle|x^{-1}\bmod p\rangle\), for
+\(x\in\mathbb F_p^\times\), which are central to affine-coordinate quantum ECDLP
+implementations. We prove a basic soundness bound for hash-derived randomized
+testing and outline a prototype verifier. The goal is not a new quantum attack,
+but reproducible, comparable, and independently auditable quantum-ECDLP arithmetic
+claims.
+\end{abstract}
+
+\tableofcontents
+
+\input{sections/intro}
+\input{sections/background}
+\input{sections/certificate_format}
+\input{sections/soundness}
+\input{sections/modular_inversion}
+\input{sections/prototype}
+\input{sections/discussion}
+\input{sections/limitations}
+\input{sections/future_work}
+
+\bibliographystyle{alpha}
+\bibliography{refs}
+\end{document}
