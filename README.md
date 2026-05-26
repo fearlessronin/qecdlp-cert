@@ -20,6 +20,8 @@ Step 5 is complete: supported toy reversible Boolean circuits can be bound to ce
 
 Step 6 is complete: a toy reversible arithmetic circuit for `(a,b)->(a,b+a mod 2^n)` is generated and certified for `n=2`.
 
+Step 7 is complete: paper-ready artifact summary files are generated from the verified certificate and toy-circuit reports.
+
 The current public gate-list examples are toy artifacts only. `circuits/toy_modinv_stub_8bit.json` is **not** a real modular-inversion circuit; it exists to test certificate/resource-count plumbing.
 
 
@@ -32,7 +34,7 @@ The current checked-in examples and reports cover seven certificates:
 - 3 exhaustive toy Boolean truth-table certificates.
 - 1 exhaustive toy arithmetic certificate for addition modulo `2^2`.
 
-The current test suite has 42 tests covering schema validation, transcript hashing, deterministic test generation, modular inversion checks, public circuit hash/resource checks, classical reversible simulation, toy truth-table certificates, and toy addition modulo `2^n`.
+The current test suite has 43 tests covering schema validation, transcript hashing, deterministic test generation, modular inversion checks, public circuit hash/resource checks, classical reversible simulation, toy truth-table certificates, and toy addition modulo `2^n`.
 
 ## Supported certificate functions
 
@@ -53,6 +55,7 @@ The current test suite has 42 tests covering schema validation, transcript hashi
 - Bind toy simulated circuits to exhaustive truth-table certificates.
 - Generate and certify a small reversible toy addition circuit modulo `2^n`.
 - Generate reproducible Markdown and CSV reports for prototype outputs.
+- Generate paper-ready Markdown and LaTeX row snippets from verified artifacts.
 
 ## Repository layout
 
@@ -122,6 +125,7 @@ Generate reports:
 ```bash
 python scripts/generate_certificate_report.py
 python scripts/generate_toy_circuit_report.py
+python scripts/generate_paper_artifact_summary.py
 ```
 
 Equivalent Makefile targets, when `make` is available:
@@ -140,6 +144,7 @@ make generate-toy-certificates
 make verify-toy-certificates
 make generate-add-mod-2n
 make verify-add-mod-2n
+make paper-summary
 ```
 
 ## Current examples
@@ -169,15 +174,17 @@ Reports:
 - `outputs/certificate_report.csv`
 - `outputs/toy_circuit_report.md`
 - `outputs/toy_circuit_report.csv`
+- `outputs/paper_artifact_summary.md`
+- `outputs/paper_artifact_summary.tex`
 
 ## Scope and non-goals
 
 This project is limited to public reversible arithmetic-block certification. It does not provide attack circuits, private-key recovery tools, or verification of withheld circuits from prior work.
 
-Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata, classical simulation of small reversible Boolean toy circuits, exhaustive truth-table certificates for supported toy functions, and a small reversible toy addition circuit modulo `2^n`.
+Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata, classical simulation of small reversible Boolean toy circuits, exhaustive truth-table certificates for supported toy functions, a small reversible toy addition circuit modulo `2^n`, and paper-ready artifact summaries generated from checked reports.
 
 The simulator does not model quantum superposition, amplitudes, phase, measurement, noise, or fault tolerance. Real reversible modular-inversion circuit generation and full circuit-level arithmetic verification are future work.
 
 ## Next development step
 
-Step 7: update implementation summary docs and prototype artifact descriptions.
+Continue paper drafting; no further verifier feature work is needed before an ePrint v1 artifact snapshot.
