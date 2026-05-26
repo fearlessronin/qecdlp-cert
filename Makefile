@@ -26,6 +26,9 @@ verify-all:
 report:
 	python scripts/generate_certificate_report.py
 
+paper-summary:
+	python scripts/generate_paper_artifact_summary.py
+
 generate-toy-circuits:
 	python scripts/generate_toy_circuits.py
 
