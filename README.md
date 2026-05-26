@@ -1,4 +1,4 @@
-﻿# qecdlp-cert
+# qecdlp-cert
 
 `qecdlp-cert` is a research prototype for verifiable resource certificates for public reversible arithmetic blocks used in quantum elliptic-curve discrete logarithm problem (ECDLP) resource estimation.
 
@@ -55,6 +55,7 @@ The current test suite has 43 tests covering schema validation, transcript hashi
 - Bind toy simulated circuits to exhaustive truth-table certificates.
 - Generate and certify a small reversible toy addition circuit modulo `2^n`.
 - Generate reproducible Markdown and CSV reports for prototype outputs.
+- Use `serial_depth` as the preferred prototype serial gate-count metric while retaining legacy `depth` compatibility.
 - Generate paper-ready Markdown and LaTeX row snippets from verified artifacts.
 
 ## Repository layout
@@ -181,7 +182,9 @@ Reports:
 
 This project is limited to public reversible arithmetic-block certification. It does not provide attack circuits, private-key recovery tools, or verification of withheld circuits from prior work.
 
-Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata including prototype `serial_depth`, classical simulation of small reversible Boolean toy circuits, exhaustive truth-table certificates for supported toy functions, a small reversible toy addition circuit modulo `2^n`, and paper-ready artifact summaries generated from checked reports.
+Current verification covers toy arithmetic transcripts, transcript hashes, public toy gate-list hashes, gate-index checks, selected resource-count metadata including preferred prototype `serial_depth`, classical simulation of small reversible Boolean toy circuits, exhaustive truth-table certificates for supported toy functions, a small reversible toy addition circuit modulo `2^n`, and paper-ready artifact summaries generated from checked reports.
+
+`serial_depth` is a serial gate-count proxy and is not an architecture-aware, scheduled, parallel, or fault-tolerant depth metric.
 
 The simulator does not model quantum superposition, amplitudes, phase, measurement, noise, or fault tolerance. Real reversible modular-inversion circuit generation and full circuit-level arithmetic verification are future work.
 
