@@ -44,7 +44,7 @@ The verifier computes:
 - NOT count;
 - total gates.
 
-The current depth convention is simple serial depth, so `depth = total_gates`.
+The preferred prototype depth field is `serial_depth`, with `serial_depth = total_gates`. This is a simple serial gate-count metric, not an architecture-aware, scheduled, parallel, or fault-tolerant depth estimate. The legacy field `depth` may appear in older certificates for compatibility.
 
 ## Register Metadata
 

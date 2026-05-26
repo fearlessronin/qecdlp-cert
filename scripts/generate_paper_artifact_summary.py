@@ -101,7 +101,7 @@ def markdown_resource_rows(certificate_rows: list[dict], circuit_rows: list[dict
         ["circuit_hash_verified", "certificate report", "hash verified / not applicable"],
         ["resource_counts_verified", "certificate report", "counts verified / not applicable"],
         ["total_gates", "toy circuit report", "serial gate count"],
-        ["depth", "toy circuit report", "serial depth convention"],
+        ["serial_depth", "toy circuit report", "serial gate-count depth; not architecture-aware"],
     ]
     # Touch both inputs so stale/empty reports fail naturally in callers/tests.
     if not certificate_rows or not circuit_rows:
@@ -129,7 +129,7 @@ def tex_resource_rows() -> list[str]:
     rows = [
         ["Transcript hash", "SHA-256 over canonical transcript JSON", "hash verified"],
         ["Public circuit", "canonical gate-list hash", "hash/counts verified"],
-        ["Resource counts", "logical qubits, CNOT, Toffoli, depth", "hash/counts verified"],
+        ["Resource counts", "logical qubits, CNOT, Toffoli, serial_depth", "hash/counts verified"],
         ["Unattached certificates", "transcript-only examples", "not attached"],
     ]
     return [" & ".join(latex_escape(value) for value in row) + r" \\" for row in rows]

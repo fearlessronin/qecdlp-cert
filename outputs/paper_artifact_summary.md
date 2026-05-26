@@ -28,7 +28,7 @@ Generated from `outputs/certificate_report.csv` and `outputs/toy_circuit_report.
 | circuit_hash_verified | certificate report | hash verified / not applicable |
 | resource_counts_verified | certificate report | counts verified / not applicable |
 | total_gates | toy circuit report | serial gate count |
-| depth | toy circuit report | serial depth convention |
+| serial_depth | toy circuit report | serial gate-count depth; not architecture-aware |
 
 ## Notes on limitations
 

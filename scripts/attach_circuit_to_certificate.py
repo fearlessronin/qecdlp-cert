@@ -34,6 +34,7 @@ def attach_circuit(cert: dict, circuit: dict, circuit_path: str) -> dict:
             "logical_qubits": summary["logical_qubits"],
             "toffoli_count": summary["toffoli_count"],
             "cnot_count": summary["cnot_count"],
+            "serial_depth": summary["serial_depth"],
             "depth": summary["depth"],
             "source": "public toy gate-list circuit; not a real modular inversion implementation",
         }

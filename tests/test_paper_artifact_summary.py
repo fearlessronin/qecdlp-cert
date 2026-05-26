@@ -20,3 +20,5 @@ def test_paper_artifact_summary_generation_creates_files():
     assert "## Notes on limitations" in markdown
     assert "Modular inversion certificate rows" in tex
     assert "Toy exhaustive certificate rows" in tex
+    assert "serial_depth" in markdown
+    assert "serial\\_depth" in tex

@@ -276,6 +276,7 @@
     "cnot_count": 2,
     "depth": 3,
     "logical_qubits": 4,
+    "serial_depth": 3,
     "source": "public toy add-mod-2^n gate-list with exhaustive classical truth-table simulation",
     "toffoli_count": 1
   },

@@ -40,7 +40,8 @@ def test_toy_modinv_stub_counts():
     assert summary["toffoli_count"] == 2
     assert summary["swap_count"] == 1
     assert summary["total_gates"] == 5
-    assert summary["depth"] == 5
+    assert summary["serial_depth"] == 5
+    assert summary["depth"] == 5  # legacy compatibility alias
 
 
 def test_validate_gate_indices_reports_out_of_range():

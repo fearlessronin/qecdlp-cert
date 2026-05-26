@@ -23,7 +23,7 @@ REPORT_HEADERS = [
     "cnot_count",
     "toffoli_count",
     "swap_count",
-    "depth",
+    "serial_depth",
     "circuit_hash",
 ]
 
@@ -41,7 +41,7 @@ def report_row(path: Path) -> dict:
         "cnot_count": counts["cnot_count"],
         "toffoli_count": counts["toffoli_count"],
         "swap_count": counts["swap_count"],
-        "depth": counts["depth"],
+        "serial_depth": counts["serial_depth"],
         "circuit_hash": circuit_hash_from_gate_list(circuit),
     }
 
@@ -49,7 +49,8 @@ def report_row(path: Path) -> dict:
 def generate_report(rows: list[dict], md_path: Path, csv_path: Path) -> None:
     markdown = "# Toy Reversible Circuit Simulation Report\n\n"
     markdown += "This report summarizes generated public toy reversible Boolean circuits. "
-    markdown += "Truth tables are computed by classical simulation on computational-basis bit inputs only.\n\n"
+    markdown += "Truth tables are computed by classical simulation on computational-basis bit inputs only. "
+    markdown += "The `serial_depth` field is a prototype serial gate count, not an architecture-aware depth metric.\n\n"
     markdown += status_to_markdown_table(rows)
     write_text(md_path, markdown)
     write_csv(csv_path, REPORT_HEADERS, rows)

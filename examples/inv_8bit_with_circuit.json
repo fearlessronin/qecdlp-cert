@@ -196,6 +196,7 @@
     "cnot_count": 1,
     "depth": 5,
     "logical_qubits": 24,
+    "serial_depth": 5,
     "source": "public toy gate-list circuit; not a real modular inversion implementation",
     "toffoli_count": 2
   },

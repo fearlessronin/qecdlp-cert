@@ -46,6 +46,7 @@ def build_add_mod_2n_certificate(circuit: dict, circuit_path: Path) -> dict:
             "ancilla_qubits": len(registers.get("work", [])),
             "toffoli_count": summary["toffoli_count"],
             "cnot_count": summary["cnot_count"],
+            "serial_depth": summary["serial_depth"],
             "depth": summary["depth"],
             "source": "public toy add-mod-2^n gate-list with exhaustive classical truth-table simulation",
         },

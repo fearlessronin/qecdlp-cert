@@ -54,6 +54,7 @@
         "ancilla_qubits": {"type": "integer", "minimum": 0},
         "toffoli_count": {"type": "integer", "minimum": 0},
         "cnot_count": {"type": "integer", "minimum": 0},
+        "serial_depth": {"type": "integer", "minimum": 0},
         "depth": {"type": "integer", "minimum": 0},
         "source": {"type": "string"}
       },

@@ -10,7 +10,7 @@ The v0.1 format requires the following top-level fields:
 - `gate_basis`: declared reversible gate basis.
 - `arithmetic_function`: supported values are `modular_inversion`, `toy_cnot_copy`, `toy_toffoli_and`, and `toy_swap`.
 - `arithmetic_parameters`: modulus, bit length, and field descriptor.
-- `resource_counts`: public metadata such as qubit counts, Toffoli count, CNOT count, depth, and source.
+- `resource_counts`: public metadata such as qubit counts, Toffoli count, CNOT count, preferred `serial_depth`, optional legacy `depth`, and source.
 - `io_spec`: domain, input register, output register, and arithmetic relation.
 - `test_generation`: deterministic test rule metadata.
 - `correctness_transcript`: test rows containing either modular-inversion fields `x`, `y`, `passed`, or toy Boolean fields `input_bits`, `output_bits`, `passed`.

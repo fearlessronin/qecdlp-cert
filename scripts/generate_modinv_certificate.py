@@ -37,6 +37,7 @@ def build_certificate(bits: int, modulus: int, count: int, exhaustive: bool = Fa
             "ancilla_qubits": bits,
             "toffoli_count": 0,
             "cnot_count": 0,
+            "serial_depth": 0,
             "depth": 0,
             "source": "toy arithmetic transcript only; no gate-level circuit supplied",
         },

@@ -351,6 +351,7 @@
     "cnot_count": 0,
     "depth": 0,
     "logical_qubits": 32,
+    "serial_depth": 0,
     "source": "toy arithmetic transcript only; no gate-level circuit supplied",
     "toffoli_count": 0
   },

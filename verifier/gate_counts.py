@@ -34,7 +34,9 @@ def count_gate_basis(gates: list[dict]) -> dict[str, int]:
 def summarize_gate_counts(circuit: dict | list[dict]) -> dict:
     """Summarize resource metadata for a public toy gate list.
 
-    The current depth convention is serial depth, so depth equals total gate count.
+    ``serial_depth`` is the prototype depth metric: every gate is treated as if
+    executed one after another, so ``serial_depth == total_gates``. It is not an
+    architecture-aware or parallelized depth estimate.
     """
     if isinstance(circuit, list):
         gates = circuit
@@ -52,8 +54,16 @@ def summarize_gate_counts(circuit: dict | list[dict]) -> dict:
         "swap_count": basis_counts.get("SWAP", 0),
         "not_count": basis_counts.get("NOT", 0),
         "total_gates": total_gates,
+        "serial_depth": total_gates,
         "depth": total_gates,
     }
+
+
+def resource_serial_depth(resource_counts: dict) -> int | None:
+    """Return preferred serial depth, falling back to legacy ``depth``."""
+    if "serial_depth" in resource_counts:
+        return resource_counts.get("serial_depth")
+    return resource_counts.get("depth")
 
 
 def validate_gate_indices(circuit: dict) -> list[str]:
@@ -106,11 +116,16 @@ def verify_circuit_against_certificate(cert: dict, circuit: dict) -> tuple[bool,
         "logical_qubits": summary["logical_qubits"],
         "toffoli_count": summary["toffoli_count"],
         "cnot_count": summary["cnot_count"],
-        "depth": summary["depth"],
     }
     for key, expected in comparisons.items():
         if resource_counts.get(key) != expected:
             messages.append(f"resource_counts.{key}={resource_counts.get(key)!r} does not match gate-list value {expected!r}")
+
+    observed_serial_depth = resource_serial_depth(resource_counts)
+    if observed_serial_depth != summary["serial_depth"]:
+        messages.append(
+            f"resource_counts.serial_depth={observed_serial_depth!r} does not match gate-list value {summary['serial_depth']!r}"
+        )
 
     ok = not messages or messages == ["certificate has no public_circuit metadata; checking resource counts only"]
     if ok:

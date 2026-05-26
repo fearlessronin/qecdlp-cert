@@ -44,6 +44,7 @@ def build_toy_certificate(arithmetic_function: str, circuit_path: Path) -> dict:
             "ancilla_qubits": 0,
             "toffoli_count": summary["toffoli_count"],
             "cnot_count": summary["cnot_count"],
+            "serial_depth": summary["serial_depth"],
             "depth": summary["depth"],
             "source": "public toy gate-list circuit with exhaustive classical truth-table simulation",
         },

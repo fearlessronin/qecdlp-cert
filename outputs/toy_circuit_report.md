@@ -1,8 +1,8 @@
 # Toy Reversible Circuit Simulation Report
 
-This report summarizes generated public toy reversible Boolean circuits. Truth tables are computed by classical simulation on computational-basis bit inputs only.
+This report summarizes generated public toy reversible Boolean circuits. Truth tables are computed by classical simulation on computational-basis bit inputs only. The `serial_depth` field is a prototype serial gate count, not an architecture-aware depth metric.
 
-| circuit_id | qubit_count | total_inputs | total_gates | not_count | cnot_count | toffoli_count | swap_count | depth | circuit_hash |
+| circuit_id | qubit_count | total_inputs | total_gates | not_count | cnot_count | toffoli_count | swap_count | serial_depth | circuit_hash |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | toy-cnot-copy | 2 | 4 | 1 | 0 | 1 | 0 | 0 | 1 | 7637440608a196c1aff574afa58574c76da3d19df12a64d0dd5c9c75d41f536b |
 | toy-toffoli-and | 3 | 8 | 1 | 0 | 0 | 1 | 0 | 1 | 1df9a26412d05514feb7f7eb5ca004836295459d505cbce557ed91c56d169d1a |

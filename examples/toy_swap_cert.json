@@ -78,6 +78,7 @@
     "cnot_count": 0,
     "depth": 1,
     "logical_qubits": 2,
+    "serial_depth": 1,
     "source": "public toy gate-list circuit with exhaustive classical truth-table simulation",
     "toffoli_count": 0
   },
